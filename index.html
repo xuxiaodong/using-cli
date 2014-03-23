@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>像黑客一样使用 Linux 命令行</title>
+    <link href="css/default.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse
+# 像黑客一样使用 
+
+```
+ _      _                  
+| |    (_)                 
+| |     _ _ __  _   ___  __
+| |    | | '_ \| | | \ \/ /
+| |____| | | | | |_| |>  < 
+|______|_|_| |_|\__,_/_/\_\
+```                           
+
+## 命令行
+
+```
+toy
+2014.3.30
+```
+---
+class: center, middle, inverse
+## 你用过命令行吗?
+
+![Terminal](img/terminal.png)
+---
+class: inverse
+## 我喜欢使用命令行的原因
+### 
+
+- 功能强大
+
+- 灵活高效
+
+- 能自动化
+---
+class: center, middle, inverse
+## 魔法即将启幕......
+
+![Magic](img/unix-magic.jpg)
+---
+class: inverse
+## 人非圣贤，孰能无过?
+### 
+
+- 重新输入，然后执行
+
+- 稍加编辑，再来执行
+
+- ?
+---
+class: inverse
+## 人非圣贤，孰能无过?
+### 
+
+- 使用 ^ 删掉多余部分
+
+```
+% grep fooo /var/log/auth.log
+
+% ^o
+
+% grep foo /var/log/auth.log
+```
+---
+class: inverse
+## 人非圣贤，孰能无过?
+### 
+
+- 使用 ^^ 换掉输错或输少的部分
+
+```
+% cat myflie
+
+% ^li^il
+
+% cat myfile
+```
+---
+class: inverse
+## 人非圣贤，孰能无过?
+### 
+
+- 使用 !:gs/old/new 将 old 全部换成 new
+
+```
+% echo bar baz
+
+% !:gs/ba/fo
+
+% echo for foz
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 了解历史记录的大小
+
+```
+% echo $HISTSIZE
+```
+
+- 历史记录的保存位置
+
+```
+% echo $HISTFILE
+```
+
+- 查看历史
+
+```
+% history
+
+1  \M-^A^Ahist
+2  ./code/gs/update_system.pl -n
+3  emerge -C chromium
+4  emerge @preserved-rebuild
+5* df -h
+......
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 使用 Ctrl + r 逆向搜索历史命令
+
+```
+% 
+(reverse-i-search)`':
+
+```
+
+- 使用 Ctrl + p 访问上一条命令
+
+```
+% history 5
+[Ctrl + p]
+```
+
+- 使用 Ctrl + n 访问下一条命令
+
+```
+% 
+[Ctrl + n]
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 历史展开模式
+
+![History](img/hist.png)
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 使用 !! 执行上一条命令
+
+```
+% !!
+
+% sudo !!
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 使用 !foo 执行以 foo 开头的命令
+
+```
+% !his
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 使用 !n 执行第 n 个命令
+
+```
+% !5
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 通过 !$ 得到上一条命令的最后一位参数
+
+```
+% echo !$
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 通过 !^ 得到上一条命令的第一个参数
+
+```
+% echo !^
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 通过 !:n* 得到上一条命令从 n 开始到最后的参数
+
+```
+% echo !:2*
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 通过 !* 得到上一条命令的所有参数
+
+```
+% echo !*
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 利用 :h 选取开头
+
+```
+% echo /a/b/c
+
+% echo !$:h
+echo /a/b
+/a/b
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 利用 :t 选取结尾
+
+```
+% echo /a/b/c
+
+% echo !$:t
+echo c
+c
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 利用 :r 选取文件名
+
+```
+% echo abc.c
+
+% echo !$:r
+echo abc
+abc
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 利用 :e 选取扩展名
+
+```
+% echo abc.c
+
+% echo !$:e
+echo c
+c
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 利用 :p 打印命令行
+
+```
+% echo *
+
+% !:p
+README.md css img index.html js
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 利用 :g 做全局操作
+---
+class: inverse
+## 常备锦囊，内藏妙计。
+### 
+
+- 使用 alias -s 定义后缀别名 (zsh)
+
+```
+% alias -s pl=perl
+
+% script.pl
+perl script.pl
+
+% alias -s pdf=zathura
+
+% vimbook.pdf
+zathura vimbook.pdf
+```
+---
+class: inverse
+## 常备锦囊，内藏妙计。
+### 
+
+- 使用 {} 构造字符串
+
+```
+% cp file.c{,.bak}
+
+% echo cp file.c{,.bak}
+
+% touch {1..10}.txt
+
+% vim {a,b,c}file.c
+```
+---
+class: inverse
+## 常备锦囊，内藏妙计。
+### 
+
+- 使用变量保存数据
+
+```
+% LOG=/var/log/emerge.log
+
+% head $LOG
+
+% grep -i compiling $LOG
+```
+---
+class: inverse
+## 常备锦囊，内藏妙计。
+### 
+
+- 使用 \`` 或 $() 做命令替换
+
+```
+% vim `grep -l error *.c`
+```
+---
+class: inverse
+## 常备锦囊，内藏妙计。
+### 
+
+- 使用 for ... in 重复执行命令
+
+```
+% cd /usr/share/figlet
+
+% for font in *.flf
+> do
+> echo $font
+> figlet -f $font Linux
+> done
+```
+---
+class: inverse
+## 扩展阅读
+### 
+
+```
+- man history
+
+- Bash Reference Manual: 
+  https://www.gnu.org/software/bash/manual/html_node/index.html
+
+- Unix Power Tools
+```
+---
+class: center, middle, inverse
+## Q & A 
+---
+class: inverse
+## 联系方式
+### 
+
+```
+- Website: http://linuxtoy.org
+
+- Twitter: http://twitter.com/xuxiaodong
+
+- GitHub: http://github.com/xuxiaodong
+
+- Gmail: xxdlhy@gmail.com
+```
+---
+class: center, middle, inverse
+## 谢谢大家！
+---
+class: center, middle, inverse
+```
+Made in Remark
+```
+    </textarea>
+    <script src="js/remark.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+        highlightStyle: 'monokai',
+        highlightLanguage: 'remark'
+      });
+    </script>
+  </body>
+</html>
