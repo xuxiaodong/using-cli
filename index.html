@@ -491,8 +491,14 @@ vim afile.c bfile.c cfile.c
 % touch {1..5}.txt
 1.txt  2.txt  3.txt  4.txt  5.txt
 
+% touch {01..5}.txt
+01.txt  02.txt  03.txt  04.txt  05.txt
+
 % touch {1..10..2}.txt
 1.txt  3.txt  5.txt  7.txt  9.txt
+
+% echo {1..10..-2} # zsh
+9 7 5 3 1
 
 ```
 ---
