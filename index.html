@@ -232,6 +232,10 @@ class: inverse
 % !!
 
 % sudo !!
+
+% apt-get install figlet
+
+% sudo !!
 ```
 ---
 class: inverse
@@ -242,6 +246,7 @@ class: inverse
 
 ```
 % !his
+history
 ```
 ---
 class: inverse
@@ -252,6 +257,7 @@ class: inverse
 
 ```
 % !?is
+echo $histchars
 ```
 ---
 class: inverse
@@ -261,7 +267,31 @@ class: inverse
 - 使用 !n 执行第 n 个命令
 
 ```
-% !5
+% !10
+vim lib/TunePage.pm
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 使用 !-n 执行倒数第 n 个命令
+
+```
+% !-2
+htop
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 使用 !# 引用当前行
+
+```
+% echo !#
+echo echo
+echo
 ```
 ---
 class: inverse
@@ -271,7 +301,9 @@ class: inverse
 - 通过 !$ 得到上一条命令的最后一位参数
 
 ```
-% echo !$
+% mkdir history
+
+% cd !$
 ```
 ---
 class: inverse
@@ -281,7 +313,9 @@ class: inverse
 - 通过 !^ 得到上一条命令的第一个参数
 
 ```
-% echo !^
+% ls /usr/share/doc /usr/share/man
+
+% cd !^
 ```
 ---
 class: inverse
@@ -291,7 +325,10 @@ class: inverse
 - 通过 !:n* 得到上一条命令从 n 开始到最后的参数
 
 ```
-% echo !:2*
+% cat /etc/resolv.conf /etc/hosts /etc/hostname
+
+% vim !:2*
+vim /etc/hosts /etc/hostname
 ```
 ---
 class: inverse
@@ -301,7 +338,9 @@ class: inverse
 - 通过 !* 得到上一条命令的所有参数
 
 ```
-% echo !*
+% ls code src
+
+% cp !*
 ```
 ---
 class: inverse
@@ -391,11 +430,10 @@ class: inverse
 - 利用 :u 将其更改为大写 (zsh)
 
 ```
-% echo abcd
+% echo $histchars
 
 % echo !$:u
-echo ABCD
-ABCD
+echo $HISTCHARS
 ```
 ---
 class: inverse
@@ -406,8 +444,7 @@ class: inverse
 
 ```
 % echo !$:l
-echo abcd
-abcd
+echo $histchars
 ```
 ---
 class: inverse
