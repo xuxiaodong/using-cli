@@ -26,24 +26,67 @@ toy
 2014.3.30
 ```
 ---
-class: center, middle, inverse
-## 你用过命令行吗?
-
-![Terminal](img/terminal.png)
----
 class: inverse
 ## 我喜欢使用命令行的原因
 ### 
 
 - 功能强大
 
+```
+% history |
+> awk '{CMD[$2]++;count++;}END \
+> { for (a in CMD)print CMD[a] " " \
+> CMD[a]/count*100 "% " a;}' |
+> grep -v "./" |
+> column -c3 -s " " -t |
+> sort -nr |
+> nl |
+> head -n10
+```
+---
+class: inverse
+## 我喜欢使用命令行的原因
+### 
+
+```
+ 1  181  8.0516%    ls
+ 2  174  7.74021%   git
+ 3  167  7.42883%   cd
+ 4  163  7.25089%   jq
+ 5  154  6.85053%   l
+ 6  137  6.09431%   vim
+ 7  102  4.53737%   rm
+ 8  59   2.62456%   ll
+ 9  52   2.31317%   echo
+10  49   2.17972%   ssh
+```
+
+([source](http://linux.byexamples.com/archives/332/what-is-your-10-common-linux-commands/))
+---
+class: inverse
+## 我喜欢使用命令行的原因
+### 
+
 - 灵活高效
 
+```
+% ls -l | grep Mar
+```
+---
+class: inverse
+## 我喜欢使用命令行的原因
+### 
+
 - 能自动化
+
+```
+% ./script.sh
+```
 ---
 class: center, middle, inverse
 ## 魔法即将启幕......
-
+---
+class: center, middle, inverse
 ![Magic](img/unix-magic.jpg)
 ---
 class: inverse
@@ -99,6 +142,16 @@ class: inverse
 ```
 ---
 class: inverse
+## 人非圣贤，孰能无过?
+### 
+
+- 一删
+
+- 二换
+
+- 三全变
+---
+class: inverse
 ## 忘记历史，就是背叛。
 ### 
 
@@ -114,6 +167,18 @@ class: inverse
 % echo $HISTFILE
 ```
 
+- 历史记录的保存大小
+
+```
+% echo $HISTFILESIZE # bash
+
+% echo $SAVEHIST     # zsh
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
 - 查看历史
 
 ```
@@ -125,6 +190,10 @@ class: inverse
 4  emerge @preserved-rebuild
 5* df -h
 ......
+
+% history n
+
+% history 5
 ```
 ---
 class: inverse
@@ -157,14 +226,6 @@ class: inverse
 ## 忘记历史，就是背叛。
 ### 
 
-- 历史展开模式
-
-![History](img/hist.png)
----
-class: inverse
-## 忘记历史，就是背叛。
-### 
-
 - 使用 !! 执行上一条命令
 
 ```
@@ -181,6 +242,16 @@ class: inverse
 
 ```
 % !his
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 使用 !?foo 执行包含 foo 的命令
+
+```
+% !?is
 ```
 ---
 class: inverse
@@ -237,28 +308,26 @@ class: inverse
 ## 忘记历史，就是背叛。
 ### 
 
-- 利用 :h 选取开头
+- 利用 :h 选取路径开头
 
 ```
-% echo /a/b/c
+% ls /usr/share/fonts/truetype
 
-% echo !$:h
-echo /a/b
-/a/b
+% cd !$:h
+cd /usr/share/fonts
 ```
 ---
 class: inverse
 ## 忘记历史，就是背叛。
 ### 
 
-- 利用 :t 选取结尾
+- 利用 :t 选取路径结尾
 
 ```
-% echo /a/b/c
+% wget http://nginx.org/download/nginx-1.4.7.tar.gz
 
-% echo !$:t
-echo c
-c
+% tar zxvf !$:t
+tar zxvf nginx-1.4.7.tar.gz
 ```
 ---
 class: inverse
@@ -268,11 +337,10 @@ class: inverse
 - 利用 :r 选取文件名
 
 ```
-% echo abc.c
+% unzip filename.zip
 
-% echo !$:r
-echo abc
-abc
+% cd !$:r
+cd filename
 ```
 ---
 class: inverse
@@ -282,11 +350,11 @@ class: inverse
 - 利用 :e 选取扩展名
 
 ```
-% echo abc.c
+% echo abc.jpg
 
 % echo !$:e
-echo c
-c
+echo jpg
+jpg
 ```
 ---
 class: inverse
@@ -307,6 +375,48 @@ class: inverse
 ### 
 
 - 利用 :g 做全局操作
+
+```
+% echo abcd abef
+
+% !:gs/ab/cd
+echo cdcd cdef
+cdcd cdef
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 利用 :u 将其更改为大写 (zsh)
+
+```
+% echo abcd
+
+% echo !$:u
+echo ABCD
+ABCD
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 利用 :l 将其更改为小写 (zsh)
+
+```
+% echo !$:l
+echo abcd
+abcd
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 历史展开模式
+
+![History](img/hist.png)
 ---
 class: inverse
 ## 常备锦囊，内藏妙计。
@@ -346,7 +456,7 @@ class: inverse
 ## 常备锦囊，内藏妙计。
 ### 
 
-- 使用变量保存数据
+- 使用变量保存信息
 
 ```
 % LOG=/var/log/emerge.log
@@ -364,6 +474,7 @@ class: inverse
 
 ```
 % vim `grep -l error *.c`
+
 ```
 ---
 class: inverse
@@ -380,6 +491,8 @@ class: inverse
 > echo $font
 > figlet -f $font Linux
 > done
+
+% for font in *.flf; do echo $font; figlet -f $font Linux; done
 ```
 ---
 class: inverse
@@ -391,6 +504,9 @@ class: inverse
 
 - Bash Reference Manual: 
   https://www.gnu.org/software/bash/manual/html_node/index.html
+
+- A User's Guide to ZSH:
+  http://zsh.sourceforge.net/Guide/zshguide.html
 
 - Unix Power Tools
 ```
