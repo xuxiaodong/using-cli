@@ -481,12 +481,19 @@ class: inverse
 
 ```
 % cp file.c{,.bak}
+cp file.c file.c.bak
 
 % echo cp file.c{,.bak}
 
-% touch {1..10}.txt
-
 % vim {a,b,c}file.c
+vim afile.c bfile.c cfile.c
+
+% touch {1..5}.txt
+1.txt  2.txt  3.txt  4.txt  5.txt
+
+% touch {1..10..2}.txt
+1.txt  3.txt  5.txt  7.txt  9.txt
+
 ```
 ---
 class: inverse
