@@ -191,8 +191,6 @@ class: inverse
 5* df -h
 ......
 
-% history n
-
 % history 5
 ```
 ---
@@ -340,7 +338,7 @@ class: inverse
 ```
 % ls code src
 
-% cp !*
+% cp -r !*
 ```
 ---
 class: inverse
@@ -493,13 +491,22 @@ vim afile.c bfile.c cfile.c
 
 % touch {01..5}.txt
 01.txt  02.txt  03.txt  04.txt  05.txt
+```
+---
+class: inverse
+## 常备锦囊，内藏妙计。
+### 
 
+- 使用 {} 构造字符串 (续)
+
+```
 % touch {1..10..2}.txt
 1.txt  3.txt  5.txt  7.txt  9.txt
 
 % echo {1..10..-2} # zsh
 9 7 5 3 1
 
+% mkdir -p 2014/{01..12}/{baby,photo}
 ```
 ---
 class: inverse
@@ -546,11 +553,23 @@ class: inverse
 ```
 ---
 class: inverse
+## 本讲之外
+### 
+
+- Tab 补全
+
+- 用快捷键编辑命令行
+
+- 定义函数
+---
+class: inverse
 ## 扩展阅读
 ### 
 
 ```
-- man history
+- bash: man history
+
+- zsh: man zshexpn
 
 - Bash Reference Manual: 
   https://www.gnu.org/software/bash/manual/html_node/index.html
@@ -558,7 +577,7 @@ class: inverse
 - A User's Guide to ZSH:
   http://zsh.sourceforge.net/Guide/zshguide.html
 
-- Unix Power Tools
+- Book: Unix Power Tools
 ```
 ---
 class: center, middle, inverse
@@ -571,7 +590,7 @@ class: inverse
 ```
 - Website: http://linuxtoy.org
 
-- Twitter: http://twitter.com/xuxiaodong
+- Twitter: http://twitter.com/linuxtoy
 
 - GitHub: http://github.com/xuxiaodong
 
