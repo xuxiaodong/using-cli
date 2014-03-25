@@ -478,13 +478,20 @@ class: inverse
 - 使用 {} 构造字符串
 
 ```
+% cp file.c file.c.bak
+
 % cp file.c{,.bak}
-cp file.c file.c.bak
 
 % echo cp file.c{,.bak}
 
 % vim {a,b,c}file.c
 vim afile.c bfile.c cfile.c
+
+% vim {a..c}file.c # bash
+
+% setopt braceccl  # zsh
+
+% vim {a-c}file.c  # zsh
 
 % touch {1..5}.txt
 1.txt  2.txt  3.txt  4.txt  5.txt
@@ -506,7 +513,12 @@ class: inverse
 % echo {1..10..-2} # zsh
 9 7 5 3 1
 
+% echo {9..1..2}   # bash
+9 7 5 3 1
+
 % mkdir -p 2014/{01..12}/{baby,photo}
+
+% echo {{A..Z},{a..z},{0..9}}
 ```
 ---
 class: inverse
