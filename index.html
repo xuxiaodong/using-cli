@@ -145,6 +145,8 @@ class: inverse
 ## 人非圣贤，孰能无过?
 ### 
 
+#### 要记住的是：
+
 - 一删
 
 - 二换
@@ -158,7 +160,7 @@ class: inverse
 - 了解历史记录的大小
 
 ```
-% echo $HISTSIZE
+% echo $HISTSIZE # 会话
 ```
 
 - 历史记录的保存位置
@@ -296,6 +298,20 @@ class: inverse
 ## 忘记历史，就是背叛。
 ### 
 
+#### 关于历史引用，要记住的是：
+
+- !!
+
+- ![?]字符串
+
+- ![-]数字
+
+- !#
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
 - 通过 !$ 得到上一条命令的最后一位参数
 
 ```
@@ -340,6 +356,20 @@ class: inverse
 
 % cp -r !*
 ```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+#### 关于 Word 选取，要记住的是：
+
+- n
+
+- ^|$
+
+- [n]*
+
+- x-y
 ---
 class: inverse
 ## 忘记历史，就是背叛。
@@ -449,6 +479,25 @@ class: inverse
 ## 忘记历史，就是背叛。
 ### 
 
+#### 关于修饰符，要记住的是：
+
+- h|t
+
+- r|e
+
+- p
+
+- s
+
+- g
+
+- u|l
+
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
 - 历史展开模式
 
 ![History](img/hist.png)
@@ -530,6 +579,8 @@ class: inverse
 ```
 % vim `grep -l error *.c`
 ```
+
+- $() 能够嵌套
 ---
 class: inverse
 ## 常备锦囊，内藏妙计。
@@ -561,6 +612,11 @@ class: inverse
 > done
 
 % for font in *.flf; do echo $font; figlet -f $font Linux; done
+
+% for dev in /dev/sd{a..d}
+> do
+> hdparm -t $dev
+> done
 ```
 ---
 class: inverse
