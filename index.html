@@ -638,7 +638,13 @@ TunePage.pm
 % vim $(grep -l error *.pm)
 ```
 
-- $() 能够嵌套，而 \`` 不支持
+- 嵌套时，$() 可读性更清晰，而 \`` 则较差
+
+```
+% vim $(grep -l failed $(date +'%Y%m%d').log)
+
+% vim `grep -l failed \`date +'%Y%m%d'\`.log`
+```
 ---
 class: inverse
 ## 常备锦囊，内藏妙计。
