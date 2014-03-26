@@ -71,6 +71,8 @@ class: inverse
 - 灵活高效
 
 ```
+% cd photos
+
 % ls -l | grep Mar
 ```
 ---
@@ -126,6 +128,12 @@ class: inverse
 % ^li^il
 
 % cat myfile
+
+% ansible vod -m command -a 'uptim'
+
+% ^im^ime
+
+% ansible vod -m command -a 'uptime'
 ```
 ---
 class: inverse
@@ -135,11 +143,11 @@ class: inverse
 - 使用 !:gs/old/new 将 old 全部换成 new
 
 ```
-% echo bar baz
+% ansible nginx -m command -a 'which nginx'
 
-% !:gs/ba/fo
+% !:gs/nginx/squid
 
-% echo for foz
+% ansible squid -m command -a 'which squid'
 ```
 ---
 class: inverse
@@ -162,20 +170,24 @@ class: inverse
 
 ```
 % echo $HISTSIZE
+1000
 ```
 
 - 历史记录的保存位置
 
 ```
 % echo $HISTFILE
+/home/xiaodong/.zhistory
 ```
 
 - 历史记录的保存大小
 
 ```
 % echo $HISTFILESIZE # bash
+1000
 
 % echo $SAVEHIST     # zsh
+1000
 ```
 ---
 class: inverse
@@ -187,7 +199,9 @@ class: inverse
 ```
 % history
 
-1  \M-^A^Ahist
+% history | less
+
+1  hist
 2  ./code/gs/update_system.pl -n
 3  emerge -C chromium
 4  emerge @preserved-rebuild
@@ -205,7 +219,7 @@ class: inverse
 
 ```
 % 
-(reverse-i-search)`':
+(reverse-i-search)`h': history 5
 
 ```
 
@@ -235,8 +249,11 @@ class: inverse
 % sudo !!
 
 % apt-get install figlet
+E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
+E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
 
 % sudo !!
+sudo apt-get install figlet
 ```
 ---
 class: inverse
@@ -282,6 +299,13 @@ class: inverse
 % !-2
 htop
 ```
+
+- Tip: 给命令提示符中增加历史命令编号
+
+```
+% export PS1='!\! \u@\h:\w\$ '
+!998 xiaodong@codetoy:~$
+```
 ---
 class: inverse
 ## 忘记历史，就是背叛。
@@ -316,7 +340,7 @@ class: inverse
 - 通过 !$ 得到上一条命令的最后一位参数
 
 ```
-% mkdir history
+% mkdir videos
 
 % cd !$
 ```
@@ -331,6 +355,32 @@ class: inverse
 % ls /usr/share/doc /usr/share/man
 
 % cd !^
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 通过 !:n 得到上一条命令第 n 个参数
+
+```
+% touch foo.txt bar.txt baz.txt
+
+% vim !:2
+vim bar.txt
+```
+---
+class: inverse
+## 忘记历史，就是背叛。
+### 
+
+- 通过 !:x-y 得到上一条命令从 x 到 y 的参数
+
+```
+% touch foo.txt bar.txt baz.txt
+
+% vim !:1-2 
+vim foo.txt bar.txt
 ```
 ---
 class: inverse
