@@ -22,7 +22,7 @@ a, a > code {
     text-decoration: none;
 }
 code {
-    font-family: 'Anonymice Pro', 'Anonymice Powerline', 'DejaVu Sans Mono';
+    font-family: 'Anonymous Pro', 'Anonymice Powerline', 'DejaVu Sans Mono', monospace;
     -moz-border-radius: 5px;
     -web-border-radius: 5px;
     background: #e7e8e2;
