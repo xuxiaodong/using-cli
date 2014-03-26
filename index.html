@@ -628,10 +628,17 @@ class: inverse
 - 使用 \`` 或 $() 做命令替换
 
 ```
-% vim `grep -l error *.c`
+% grep -l error *.pm
+TunePage.pm
+
+% vim TunePage.pm
+
+% vim `grep -l error *.pm`
+
+% vim $(grep -l error *.pm)
 ```
 
-- $() 能够嵌套
+- $() 能够嵌套，而 \`` 不支持
 ---
 class: inverse
 ## 常备锦囊，内藏妙计。
@@ -669,6 +676,14 @@ class: inverse
 > hdparm -t $dev
 > done
 ```
+---
+class: inverse
+## 重要原则
+### 
+
+- Type less, accomplish more (打得少做得多)
+
+- DRY, don't repeat yourself (别重复自己)
 ---
 class: inverse
 ## 本讲之外
