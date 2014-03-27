@@ -120,7 +120,7 @@ class: inverse
 ## 人非圣贤，孰能无过?
 ### 
 
-- 使用 ^^ 换掉输错或输少的部分
+- 使用 ^old^new 换掉输错或输少的部分
 
 ```
 % cat myflie
@@ -209,6 +209,8 @@ class: inverse
 ......
 
 % history 5
+
+% history | grep <string>
 ```
 ---
 class: inverse
@@ -298,6 +300,8 @@ class: inverse
 ```
 % !-2
 htop
+
+% !-1 == !!
 ```
 
 - Tip: 给命令提示符中增加历史命令编号
@@ -351,6 +355,9 @@ class: inverse
 % mkdir videos
 
 % cd !$
+
+% 
+[Alt + .]
 ```
 ---
 class: inverse
@@ -363,6 +370,9 @@ class: inverse
 % ls /usr/share/doc /usr/share/man
 
 % cd !^
+
+%
+[Ctrl + Alt + y]
 ```
 ---
 class: inverse
@@ -429,6 +439,14 @@ class: inverse
 - [n]*
 
 - x-y
+
+```
+% !an:$
+
+% !10:2-4
+
+% !{an}2
+```
 ---
 class: inverse
 ## 忘记历史，就是背叛。
@@ -491,9 +509,10 @@ class: inverse
 
 ```
 % echo *
+README.md css img index.html js
 
 % !:p
-README.md css img index.html js
+echo *
 ```
 ---
 class: inverse
@@ -567,6 +586,13 @@ class: inverse
 - g
 
 - u|l
+
+```
+% ls /usr/share/fonts/opentype
+
+% echo !$:t:u
+echo OPENTYPE
+```
 
 ---
 class: inverse
@@ -652,10 +678,10 @@ class: inverse
 - 使用 \`` 或 $() 做命令替换
 
 ```
-% grep -l error *.pm
+% grep -l error *.pm # (1)
 TunePage.pm
 
-% vim TunePage.pm
+% vim TunePage.pm    # (2)
 
 % vim `grep -l error *.pm`
 
@@ -723,11 +749,13 @@ class: inverse
 
 - Tab 补全
 
-- 使用通配符 (* ? [a-z])
+- 使用通配符 (* ? [a-z] [0-9])
 
 - 用快捷键编辑命令行
 
 - 字符串处理
+
+- 复合命令 (; &amp;&amp; ||)
 ---
 class: inverse
 ## 扩展阅读
