@@ -729,19 +729,31 @@ class: inverse
 - 使用 for ... in 重复执行命令
 
 ```
-% cd /usr/share/figlet
+% figlet -f font-type-1 Linux # (1)
+% figlet -f font-type-2 Linux # (2)
+% figlet -f font-type-3 Linux # (3)
+% ...
 
+% cd /usr/share/figlet
 % for font in *.flf
 > do
-> echo $font
-> figlet -f $font Linux
+>   echo $font
+>   figlet -f $font Linux
 > done
 
 % for font in *.flf; do echo $font; figlet -f $font Linux; done
+```
+---
+class: inverse
+## 常备锦囊，内藏妙计。
+### 
 
+- 使用 for ... in 重复执行命令 (续)
+
+```
 % for dev in /dev/sd{a..d}
 > do
-> hdparm -t $dev
+>   hdparm -t $dev
 > done
 ```
 ---
